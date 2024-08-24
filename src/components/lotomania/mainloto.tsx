@@ -20,6 +20,7 @@ type AcertosCount = {
 export default function MainLoto() {
   const [lotoMania, setLotoMania] = useState<LotoManiaResult[]>([]);
   const [valor, setValor] = useState("");
+  const [tabs, setTabs] = useState(true);
   const [acertos, setAcertos] = useState<AcertosCount>({
     20: 0,
     19: 0,
@@ -29,6 +30,13 @@ export default function MainLoto() {
     15: 0,
     0: 0,
   });
+
+  const tabsSwitch = () => {
+    setTabs(true);
+  };
+  const tabsSwitch2 = () => {
+    setTabs(false);
+  };
 
   const unico = [
     "01",
@@ -157,54 +165,115 @@ export default function MainLoto() {
             </div>
           </div>
           <div className="col-span-6">
-            <div className="flex justify-between">
-              <h2 className="text-lg font-medium">Exibir resultados</h2>
+            <div className="w-full flex justify-between items-center mb-2">
               <button
-                className="bg-blue-500 px-5 py-1.5 font-medium text-base text-white"
-                onClick={verificarAcertos}
+                className="w-full py-1.5 bg-slate-400"
+                onClick={tabsSwitch}
               >
-                Verificar
+                metodo 1
+              </button>{" "}
+              <button
+                className="w-full  py-1.5 bg-slate-400"
+                onClick={tabsSwitch2}
+              >
+                metodo 2
               </button>
             </div>
-            <section>
-              <ul>
-                <li>
-                  <div>
-                    <h3>Teste 1</h3>
-                    <p>{unico.join(" ")}</p>
-                    <div className="bg-gray-100">
-                      <h2 className="text-base font-medium">
-                        Total de acertos
-                      </h2>
-                      <div className="flex justify-between items-center text-center">
-                        <span className="w-full bg-red-500 text-white font-bold">
-                          20 : {acertos[20]}
-                        </span>
-                        <span className="w-full bg-green-800 text-white font-bold">
-                          19 : {acertos[19]}
-                        </span>
-                        <span className="w-full bg-green-700 text-white font-bold">
-                          18 : {acertos[18]}
-                        </span>
-                        <span className="w-full bg-green-600 text-white font-bold">
-                          17 : {acertos[17]}
-                        </span>
-                        <span className="w-full bg-green-500 text-white font-bold">
-                          16 : {acertos[16]}
-                        </span>
-                        <span className="w-full bg-green-400 text-green-800 font-bold">
-                          15 : {acertos[15]}
-                        </span>
-                        <span className="w-full bg-green-300 text-green-800 font-bold">
-                          {" "}
-                          0 : {acertos[0]}
-                        </span>
+            {tabs ? (
+              <div className="">
+                <div className="flex justify-between">
+                  <h2 className="text-lg font-medium">Exibir resultados</h2>
+                  <button
+                    className="bg-blue-500 px-5 py-1.5 font-medium text-base text-white"
+                    onClick={verificarAcertos}
+                  >
+                    Verificar
+                  </button>
+                </div>
+                <section>
+                  <ul>
+                    <li>
+                      <div>
+                        <h3>Teste 1</h3>
+                        <p>{unico.join(" ")}</p>
+                        <div className="bg-gray-100">
+                          <h2 className="text-base font-medium">
+                            Total de acertos
+                          </h2>
+                          <div className="flex justify-between items-center text-center">
+                            <span className="w-full bg-red-500 text-white font-bold">
+                              20 : {acertos[20]}
+                            </span>
+                            <span className="w-full bg-green-800 text-white font-bold">
+                              19 : {acertos[19]}
+                            </span>
+                            <span className="w-full bg-green-700 text-white font-bold">
+                              18 : {acertos[18]}
+                            </span>
+                            <span className="w-full bg-green-600 text-white font-bold">
+                              17 : {acertos[17]}
+                            </span>
+                            <span className="w-full bg-green-500 text-white font-bold">
+                              16 : {acertos[16]}
+                            </span>
+                            <span className="w-full bg-green-400 text-green-800 font-bold">
+                              15 : {acertos[15]}
+                            </span>
+                            <span className="w-full bg-green-300 text-green-800 font-bold">
+                              {" "}
+                              0 : {acertos[0]}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+            ) : (
+              <div className="w-full h-full">
+                <div className="flex justify-between items-center gap-2">
+                  <input
+                    type="text"
+                    className="bg-gray-100 w-full p-1.5 placeholder:text-gray-500"
+                    placeholder="Digite sua combinação"
+                  />
+                  <button className="bg-blue-500 py-1.5 px-5 text-base text-white font-medium">
+                    Verificar
+                  </button>
+                </div>
+                <div className="">
+                  <h3>{} combinação</h3>
+                </div>
+                <div className="bg-gray-100">
+                  <h2 className="text-base font-medium">Total de acertos</h2>
+                  <div className="flex justify-between items-center text-center">
+                    <span className="w-full bg-red-500 text-white font-bold">
+                      20 : {acertos[20]}
+                    </span>
+                    <span className="w-full bg-green-800 text-white font-bold">
+                      19 : {acertos[19]}
+                    </span>
+                    <span className="w-full bg-green-700 text-white font-bold">
+                      18 : {acertos[18]}
+                    </span>
+                    <span className="w-full bg-green-600 text-white font-bold">
+                      17 : {acertos[17]}
+                    </span>
+                    <span className="w-full bg-green-500 text-white font-bold">
+                      16 : {acertos[16]}
+                    </span>
+                    <span className="w-full bg-green-400 text-green-800 font-bold">
+                      15 : {acertos[15]}
+                    </span>
+                    <span className="w-full bg-green-300 text-green-800 font-bold">
+                      {" "}
+                      0 : {acertos[0]}
+                    </span>
                   </div>
-                </li>
-              </ul>
-            </section>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
