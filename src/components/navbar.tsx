@@ -8,7 +8,9 @@ export default function Navbar() {
         <div className=" flex justify-between items-center">
           <div className="flex items-center gap-2">
             <BsBarChartLine className="text-white" />
-            <h1 className="text-white font-bold text-base">OniMeta</h1>
+            <Link href={"/"}>
+              <h1 className="text-white font-bold text-base">OniMeta</h1>
+            </Link>
           </div>
         </div>
         <nav>
@@ -16,7 +18,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/maismilionaria"}
               >
                 +milionária
               </Link>
@@ -24,7 +26,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/megasena"}
               >
                 mega-sena
               </Link>
@@ -32,7 +34,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white decoration-1 hover:underline transition-all  underline-offset-2"
-                href={""}
+                href={"/lotofacil"}
               >
                 lotofácil
               </Link>
@@ -40,7 +42,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/quina"}
               >
                 quina
               </Link>
@@ -48,7 +50,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"lotomania"}
               >
                 lotomania
               </Link>
@@ -56,7 +58,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/timemania"}
               >
                 timemania
               </Link>
@@ -64,7 +66,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/duplasena"}
               >
                 dupla sena
               </Link>
@@ -72,7 +74,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/federal"}
               >
                 federal
               </Link>
@@ -80,7 +82,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/diasorte"}
               >
                 dia de sorte
               </Link>
@@ -88,7 +90,7 @@ export default function Navbar() {
             <li>
               <Link
                 className="text-white text-base font-sans font-semibold hover:decoration-white hover:underline decoration-1 transition-all  underline-offset-2"
-                href={""}
+                href={"/supersete"}
               >
                 super sete
               </Link>
