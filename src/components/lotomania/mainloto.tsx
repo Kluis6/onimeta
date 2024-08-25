@@ -32,7 +32,14 @@ export default function MainLoto() {
   });
   const [option, setOption] = useState<LotoManiaResult[]>([]);
   // Ordena o array em ordem crescente
-  const sortedOptions = option.sort((a, b) => a.concurso - b.concurso);
+  // const sortedOptions = option.sort((a, b) => a - b);
+  const sortedOptions = option.sort(
+    (a: LotoManiaResult, b: LotoManiaResult) => {
+      const aConcurso = parseInt(a.concurso);
+      const bConcurso = parseInt(b.concurso);
+      return aConcurso - bConcurso;
+    }
+  );
 
   const tabsSwitch = () => {
     setTabs(true);
@@ -40,16 +47,15 @@ export default function MainLoto() {
   const tabsSwitch2 = () => {
     setTabs(false);
   };
-  const [unico, setUnico] = useState<string>('');
+  const [unico, setUnico] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Remove espaços e adiciona espaço a cada dois dígitos
-    const formattedValue = e.target.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1 ');
+    const formattedValue = e.target.value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(?=\d)/g, "$1 ");
     setUnico(formattedValue);
-};
-
-
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
