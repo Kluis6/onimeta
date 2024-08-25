@@ -30,6 +30,9 @@ export default function MainLoto() {
     15: 0,
     0: 0,
   });
+  const [option, setOption] = useState<LotoManiaResult[]>([]);
+  // Ordena o array em ordem crescente
+  const sortedOptions = option.sort((a, b) => a.concurso - b.concurso);
 
   const tabsSwitch = () => {
     setTabs(true);
@@ -37,59 +40,16 @@ export default function MainLoto() {
   const tabsSwitch2 = () => {
     setTabs(false);
   };
+  const [unico, setUnico] = useState<string>('');
 
-  const unico = [
-    "01",
-    "02",
-    "03",
-    "11",
-    "12",
-    "13",
-    "21",
-    "22",
-    "23",
-    "31",
-    "32",
-    "33",
-    "41",
-    "42",
-    "43",
-    "51",
-    "52",
-    "53",
-    "61",
-    "62",
-    "63",
-    "71",
-    "72",
-    "73",
-    "81",
-    "82",
-    "83",
-    "91",
-    "92",
-    "93",
-    "04",
-    "14",
-    "24",
-    "34",
-    "44",
-    "54",
-    "64",
-    "74",
-    "84",
-    "94",
-    "05",
-    "15",
-    "25",
-    "35",
-    "45",
-    "55",
-    "65",
-    "75",
-    "85",
-    "95",
-  ];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove espaços e adiciona espaço a cada dois dígitos
+    const formattedValue = e.target.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1 ');
+    setUnico(formattedValue);
+};
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,6 +62,25 @@ export default function MainLoto() {
 
     fetchData();
   }, [valor]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://loteriascaixa-api.herokuapp.com/api/lotomania/`
+      );
+      const data: LotoManiaResult = await response.json();
+      setOption(option.length < 0 ? [data] : Array.isArray(data) ? data : []);
+    };
+
+    fetchData();
+  }, []);
+
+  // Função para lidar com a mudança de seleção
+  const handleSelectChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setValor(event.target.value);
+  };
 
   const verificarAcertos = () => {
     const totalAcertos: AcertosCount = {
@@ -133,6 +112,38 @@ export default function MainLoto() {
       <div className="bg-white p-4 my-4">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-orange-500 text-base font-bold">LotoMania</h2>
+              <span className="flex items-center gap-3 ">
+                <h3>Concurso:</h3>
+                <select
+                  className="outline outline-1 outline-black w-48 ps-2 py-1"
+                  id="concurso"
+                  value={valor}
+                  onChange={handleSelectChange}
+                >
+                  <option value="" disabled>
+                    Escolha o concurso
+                  </option>
+                  {Array.isArray(option) ? (
+                    sortedOptions.map((resulto) => (
+                      <option
+                        id="concurso"
+                        key={resulto.concurso}
+                        value={resulto.concurso}
+                        className=""
+                      >
+                        {resulto.concurso}
+                      </option>
+                    ))
+                  ) : (
+                    <option>Carregando...</option>
+                  )}{" "}
+                  */
+                </select>
+              </span>
+            </div>
+
             <div className="bg-gray-100 p-4">
               {Array.isArray(lotoMania) ? (
                 lotoMania.map((result) => (
@@ -181,8 +192,15 @@ export default function MainLoto() {
             </div>
             {tabs ? (
               <div className="">
-                <div className="flex justify-between">
-                  <h2 className="text-lg font-medium">Exibir resultados</h2>
+                <h2 className="text-lg font-medium">Exibir resultados</h2>
+                <div className="flex justify-between gap-2">
+                  <input
+                    className="w-full px-2 bg-gray-100 placeholder:text-gray-600"
+                    type="text"
+                    placeholder="digite sua combinação"
+                    value={unico}
+                    onChange={handleChange}
+                  />
                   <button
                     className="bg-blue-500 px-5 py-1.5 font-medium text-base text-white"
                     onClick={verificarAcertos}
@@ -195,7 +213,10 @@ export default function MainLoto() {
                     <li>
                       <div>
                         <h3>Teste 1</h3>
-                        <p>{unico.join(" ")}</p>
+                        <div className="w-full h-10">
+                          <p>{unico}</p>
+                        </div>
+
                         <div className="bg-gray-100">
                           <h2 className="text-base font-medium">
                             Total de acertos
