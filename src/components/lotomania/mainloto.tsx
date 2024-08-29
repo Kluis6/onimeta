@@ -30,6 +30,27 @@ export default function MainLoto() {
     15: 0,
     0: 0,
   });
+
+  // Estado que gerencia uma lista de strings
+  const [items, setItems] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState<string>("");
+
+  // Função para adicionar um item à lista
+  const addItem = () => {
+    if (inputValue.trim() !== "") {
+      setItems([...items, inputValue]);
+      setInputValue(""); // Limpa o campo de entrada após adicionar
+    }
+  };
+
+
+
+   // Função para remover um item da lista com base no índice
+   const removeItem = (index: number) => {
+    const newItems = items.filter((_, i) => i !== index);
+    setItems(newItems);
+  };
+
   const [option, setOption] = useState<LotoManiaResult[]>([]);
   // Ordena o array em ordem crescente
   // const sortedOptions = option.sort((a, b) => a - b);
@@ -79,7 +100,7 @@ export default function MainLoto() {
     };
 
     fetchData();
-  }, []);
+  });
 
   // Função para lidar com a mudança de seleção
   const handleSelectChange = (event: {
@@ -264,40 +285,57 @@ export default function MainLoto() {
                     type="text"
                     className="bg-gray-100 w-full p-1.5 placeholder:text-gray-500"
                     placeholder="Digite sua combinação"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                   />
+                  <button
+                    onClick={addItem}
+                    className="bg-green-500 py-1.5 px-5 text-base text-white font-medium"
+                  >
+                    adicionar
+                  </button>
                   <button className="bg-blue-500 py-1.5 px-5 text-base text-white font-medium">
                     Verificar
                   </button>
                 </div>
                 <div className="">
-                  <h3>{} combinação</h3>
-                </div>
-                <div className="bg-gray-100">
-                  <h2 className="text-base font-medium">Total de acertos</h2>
-                  <div className="flex justify-between items-center text-center">
-                    <span className="w-full bg-red-500 text-white font-bold">
-                      20 : {acertos[20]}
-                    </span>
-                    <span className="w-full bg-green-800 text-white font-bold">
-                      19 : {acertos[19]}
-                    </span>
-                    <span className="w-full bg-green-700 text-white font-bold">
-                      18 : {acertos[18]}
-                    </span>
-                    <span className="w-full bg-green-600 text-white font-bold">
-                      17 : {acertos[17]}
-                    </span>
-                    <span className="w-full bg-green-500 text-white font-bold">
-                      16 : {acertos[16]}
-                    </span>
-                    <span className="w-full bg-green-400 text-green-800 font-bold">
-                      15 : {acertos[15]}
-                    </span>
-                    <span className="w-full bg-green-300 text-green-800 font-bold">
-                      {" "}
-                      0 : {acertos[0]}
-                    </span>
-                  </div>
+                  <ul>
+                    {items.map((item, index) => (
+                      <li key={index}>
+                        {item}<button className="bg-red-600 p-3 mx-2" onClick={() => removeItem(index)} >delete</button>
+                        <div className="bg-gray-100">
+                          <h2 className="text-base font-medium">
+                            Total de acertos
+                          </h2>
+                          <div className="flex justify-between items-center text-center">
+                            <span className="w-full bg-red-500 text-white font-bold">
+                              20 : {acertos[20]}
+                            </span>
+                            <span className="w-full bg-green-800 text-white font-bold">
+                              19 : {acertos[19]}
+                            </span>
+                            <span className="w-full bg-green-700 text-white font-bold">
+                              18 : {acertos[18]}
+                            </span>
+                            <span className="w-full bg-green-600 text-white font-bold">
+                              17 : {acertos[17]}
+                            </span>
+                            <span className="w-full bg-green-500 text-white font-bold">
+                              16 : {acertos[16]}
+                            </span>
+                            <span className="w-full bg-green-400 text-green-800 font-bold">
+                              15 : {acertos[15]}
+                            </span>
+                            <span className="w-full bg-green-300 text-green-800 font-bold">
+                              {" "}
+                              0 : {acertos[0]}
+                            </span>
+                          </div>
+                        </div>
+                      </li>
+                      
+                    ))}
+                  </ul>
                 </div>
               </div>
             )}

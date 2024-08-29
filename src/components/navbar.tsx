@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { BsBarChartLine } from "react-icons/bs";
+import { IconBase } from "react-icons";
+import { BsBarChartLine, BsList } from "react-icons/bs";
 
 export default function Navbar() {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-cyan-600 w-full">
-      <div className=" px-4 py-2 flex items-center justify-between">
+      <div className="px-4 py-2 flex items-center justify-between mx-auto">
         <div className=" flex justify-between items-center">
           <div className="flex items-center gap-2">
             <BsBarChartLine className="text-white" />
@@ -13,7 +14,10 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-        <nav>
+        <nav className="flex">
+          <button className="bg-red-500 size-8 flex items-center justify-center">
+            <BsList className="text-white text-2xl" />
+          </button>
           <ul className="flex gap-2">
             <li>
               <Link
