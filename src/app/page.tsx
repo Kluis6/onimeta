@@ -151,8 +151,8 @@ export default async function Home() {
   const supersete = await getSupersete();
 
   return (
-    <main className="p-4 mx-auto  w-full">
-      <section className=" w-full h-full p-2">
+    <main className="container mx-auto px-4 md:px-0 ">
+      <section className="">
         <div className="grid grid-cols-12 gap-2">
           <div className="col-span-12">
             <h1 className="font-bold text-3xl text-gray-800">Loterias</h1>{" "}
