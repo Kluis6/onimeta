@@ -114,29 +114,32 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        className={`bg-gradient-to-r from-black shadow-md  h-screen absolute top-0 z-10 transition-all duration-150 ${
+        className={`h-screen absolute top-0 z-10 transition-all duration-150 ${
           menu === false ? "invisible w-[0vw] opacity-40" : "visible w-full"
         }`}
       >
         <section>
-          <div className="bg-neutral-50  h-screen w-[84vw]">
-            <div className="flex items-center justify-between p-4">
-              <h2 className="text-base font-bold">Loterias</h2>
+          <div className="bg-neutral-50">
+            <div className="flex items-center justify-between px-4 py-3">
+              <div className="flex items-center space-x-1">
+                <LuClover className="text-blue-600 text-xl " />
+                <h1 className="text-blue-600 font-bold text-base">OniMeta</h1>
+              </div>
 
-              <button onClick={toggleMenu} type="button">
+              <button onClick={toggleMenu} type="button" className="px-2">
                 <BsXLg />
               </button>
             </div>
             <section className="p-4">
               <div className="w-full bg-neutral-200 p-4 space-y-4">
                 <h3 className="text-center text-xl font-bold">Bem vindo</h3>
-                <section className="flex flex-col items-center gap-2 ">
+                <section className="flex flex-col items-center gap-4 ">
                   <input
                     type="text"
                     className="w-full p-2"
                     placeholder="Digite seu login "
                   />
-            
+
                   <input
                     type="password"
                     className="w-full p-2"
@@ -157,7 +160,7 @@ export default function Navbar() {
                 </section>
                 <></>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2 invisible">
                 <li>
                   <Link
                     className="text-sm font-sans font-semibold"
