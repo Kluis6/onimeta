@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { BsList } from "react-icons/bs";
+import { BsList, BsXLg } from "react-icons/bs";
 import { LuClover } from "react-icons/lu";
 
 export default function Navbar() {
@@ -113,7 +113,136 @@ export default function Navbar() {
           </nav>
         </div>
       </div>
-      <div className={`bg-white shadow-md  h-screen absolute top-0 z-10 transition-all duration-150 ${menu === false ? "invisible w-[0vw] opacity-40":"visible w-[85vw]"}`}></div>
+      <div
+        className={`bg-gradient-to-r from-black shadow-md  h-screen absolute top-0 z-10 transition-all duration-150 ${
+          menu === false ? "invisible w-[0vw] opacity-40" : "visible w-full"
+        }`}
+      >
+        <section>
+          <div className="bg-neutral-50  h-screen w-[84vw]">
+            <div className="flex items-center justify-between p-4">
+              <h2 className="text-base font-bold">Loterias</h2>
+
+              <button onClick={toggleMenu} type="button">
+                <BsXLg />
+              </button>
+            </div>
+            <section className="p-4">
+              <div className="w-full bg-neutral-200 p-4 space-y-4">
+                <h3 className="text-center text-xl font-bold">Bem vindo</h3>
+                <section className="flex flex-col items-center gap-2 ">
+                  <input
+                    type="text"
+                    className="w-full p-2"
+                    placeholder="Digite seu login "
+                  />
+            
+                  <input
+                    type="password"
+                    className="w-full p-2"
+                    placeholder="digite sua senha"
+                  />
+                  <button
+                    type="button"
+                    className="bg-blue-500 p-2 w-full text-white font-bold"
+                  >
+                    Entrar
+                  </button>
+                  <Link href={""} className="text-sm">
+                    Esqueceu sua senha?
+                  </Link>
+                  <Link href={""} className="text-sm">
+                    Cria conta
+                  </Link>
+                </section>
+                <></>
+              </div>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/maismilionaria"}
+                  >
+                    +milionária
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/megasena"}
+                  >
+                    mega-sena
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/lotofacil"}
+                  >
+                    lotofácil
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/quina"}
+                  >
+                    quina
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"lotomania"}
+                  >
+                    lotomania
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/timemania"}
+                  >
+                    timemania
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/duplasena"}
+                  >
+                    dupla sena
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/federal"}
+                  >
+                    federal
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/diasorte"}
+                  >
+                    dia de sorte
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-sm font-sans font-semibold"
+                    href={"/supersete"}
+                  >
+                    super sete
+                  </Link>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </section>
+      </div>
     </>
   );
 }
