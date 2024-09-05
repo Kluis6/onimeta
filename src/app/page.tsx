@@ -155,7 +155,7 @@ export default async function Home() {
       <section className="">
         <div className="grid grid-cols-12 gap-2">
           <div className="col-span-12">
-            <h1 className="font-bold text-3xl text-gray-800">Loterias</h1>{" "}
+            <h1 className="font-bold text:xl md:text-3xl text-gray-800">Loterias</h1>{" "}
             <p className="font-semibold text-gray-700">
               Confira os últimos resultados
             </p>
