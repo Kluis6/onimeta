@@ -2,15 +2,21 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { BsList, BsXLg } from "react-icons/bs";
+import { BsList, BsPersonCircle, BsXLg } from "react-icons/bs";
 import { LuClover } from "react-icons/lu";
 
 export default function Navbar() {
   const [menu, setMenu] = useState<boolean>(false);
   const toggleMenu = () => setMenu(!menu);
+
+  const [dialog, setDialog] = useState<boolean>(false);
+  const toggleDialog = () => setDialog(!dialog);
+
+  const [side, setSide] = useState<boolean>(false);
+  const toggleSide = () => setSide(!side);
   return (
     <>
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 w-full top-0  sticky">
+      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 w-full top-0 left-0  sticky">
         <div className="px-4 md:px-0 py-2 flex items-center justify-between container mx-auto">
           <div className=" flex justify-between items-center">
             <div className="flex items-center space-x-1">
@@ -26,6 +32,19 @@ export default function Navbar() {
               onClick={toggleMenu}
             >
               <BsList className="text-white text-2xl" />
+            </button>
+
+            <button
+              className="size-8 flex items-center justify-center invisible md:visible "
+              onClick={toggleDialog}
+            >
+              <BsPersonCircle className="text-white text-2xl" />
+            </button>
+            <button
+              className="size-8 flex items-center justify-center invisible md:visible "
+              onClick={toggleSide}
+            >
+              <BsPersonCircle className="text-white text-2xl" />
             </button>
 
             {/* <ul className="flex gap-2">
@@ -114,12 +133,12 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        className={`h-screen absolute top-0 z-10 transition-all duration-150 ${
-          menu === false ? "invisible w-[0vw] opacity-40" : "visible w-full"
+        className={`h-screen absolute top-0 w-full z-10 transition-all duration-150 ${
+          menu ? "" : "-translate-x-full "
         }`}
       >
         <section>
-          <div className="bg-neutral-50">
+          <div className="bg-neutral-50 h-screen">
             <div className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center space-x-1">
                 <LuClover className="text-blue-600 text-xl " />
@@ -127,7 +146,7 @@ export default function Navbar() {
               </div>
 
               <button onClick={toggleMenu} type="button" className="px-2">
-                <BsXLg />
+                <BsXLg className="font-bold" />
               </button>
             </div>
             <section className="p-4">
@@ -139,12 +158,15 @@ export default function Navbar() {
                     className="w-full p-2"
                     placeholder="Digite seu login "
                   />
+                  <div className="relative w-full">
+                    <input
+                      type="password"
+                      className="w-full p-2"
+                      placeholder="digite sua senha"
+                    />
+                    <button type="button"></button>
+                  </div>
 
-                  <input
-                    type="password"
-                    className="w-full p-2"
-                    placeholder="digite sua senha"
-                  />
                   <button
                     type="button"
                     className="bg-blue-500 p-2 w-full text-white font-bold"
@@ -245,6 +267,25 @@ export default function Navbar() {
             </section>
           </div>
         </section>
+      </div>
+
+      <div
+        className={`absolute top-0 left-0 flex items-center justify-center w-full h-screen z-10 bg-black/25 ${
+          dialog ? "block" : "hidden"
+        }`}
+      >
+        <div onClick={toggleDialog} className="text-2xl font-bold p-9 bg-white">
+          vai la
+        </div>
+      </div>
+      <div
+        className={`z-10 absolute top-0 left-0 w-full h-screen bg-white transition-all duration-200  ${
+          side ? "" : "-translate-x-full "
+        }`}
+        onClick={toggleSide}
+      >
+        modal
+        <div className="bg-red-500 p-8"></div>
       </div>
     </>
   );
